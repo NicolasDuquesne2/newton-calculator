@@ -2,9 +2,9 @@
 
 function App() {
   return (
-    <div className="App p-3">
-      <header className="App-header">
-        <p className="text-danger fs-1">LOL</p>
+    <div className="App container-fluid">
+      <header className="p-3 mb-3 bg-primary bg-gradient border">
+        <p className="text-white text-center fs-1">Welcome to Empyrion newton calculator</p>
       </header>
     </div>
   );
