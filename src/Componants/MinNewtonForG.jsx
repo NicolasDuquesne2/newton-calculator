@@ -1,44 +1,42 @@
 import { useRef } from 'react'
-import useMaxG from '../Hooks/useMaxG'
 import Button from 'react-bootstrap/Button'
 import Form  from 'react-bootstrap/Form'
+import useMinNewton from '../Hooks/useMinNewton'
 
-function GMaxForm(){
+function MinNewtonForG(){
 
-    const [maxG, setDatas] = useMaxG({})
     const massInput = useRef(null)
-    const newtonInput = useRef(null)
-    const maxGDisplay = useRef(null)
+    const gInput = useRef(null)
     const cargoInput = useRef(null)
+    const maxGDisplay = useRef(null)
+    const [nMin, setDatas] = useMinNewton({})
 
     function onFormVal() {
         const massNumeric = Number(massInput.current.value)
-        const newtonNumeric = Number(newtonInput.current.value)
+        const gNumeric = Number(gInput.current.value)
         const cargoNumeric = Number(cargoInput.current.value)
-
-        if( !isNaN(massNumeric) && !isNaN(newtonNumeric)) {
+    
+        if( !isNaN(massNumeric) && !isNaN(gNumeric) && !isNaN(cargoNumeric)) {
             const totalWeight =  massNumeric + cargoNumeric
-            setDatas({mass:totalWeight, newton:newtonNumeric})
+            setDatas({mass: totalWeight, g: gNumeric})
         }
     }
     
     function onEraseForm() {
     massInput.current.value = ''
-    newtonInput.current.value = ''
-    maxGDisplay.current.outerHTML = ''
+    gInput.current.value = ''
     cargoInput.current.value = ''
+    maxGDisplay.current.outerHTML = ''
     }
-
-    console.log(maxG)
 
     return(
         <div className='w-25'>
-            <h3 className='text-wrap'>Calculez le nombre de G maximum supporté par votre vaisseau</h3>
+            <h3 className='text-wrap'>Calculez le nombre de Newton nécessaire pour la masse de votre vaisseau et du nombre de G visé</h3>
             <pre className='text-wrap'>
                 Entrez la masse de votre vaisseau, exprimée est Kt ou en tonnes dans le jeu.
                 1 tonne = 1 000 Kg, un 1Kt = 1 000 000. 
                 Pour un vaisseau de 15Kt, veuillez entrer 15000000 dans le champ Masse du vaisseau
-                Pour 1 MN - Mega Newton veuillez entrer 1000000 dans le champ Newtons
+                Veuillez entrer le nombre de G visés, dans le champ du nombre de G
             </pre>
              <Form>
                 <Form.Group className="mb-3" controlId="massInput">
@@ -52,10 +50,10 @@ function GMaxForm(){
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="newtonInput">
-                <Form.Label>Newtons</Form.Label>
-                <Form.Control type="number" ref={newtonInput} required={true}/>
+                <Form.Label>Nombre de G</Form.Label>
+                <Form.Control type="number" ref={gInput} required={true}/>
                 </Form.Group>
-                
+            
                 <Button variant="primary" type="button" onClick={() => onFormVal()}>
                 Calculer
                 </Button>
@@ -63,9 +61,9 @@ function GMaxForm(){
                 Effacer
                 </Button>
             </Form>
-            {isNaN(maxG)? "": <p ref={maxGDisplay}>{maxG}</p>}
+            {isNaN(nMin)? "": <p ref={maxGDisplay}>{nMin}</p>}
         </div>       
     )
 }
 
-export default GMaxForm
+export default MinNewtonForG

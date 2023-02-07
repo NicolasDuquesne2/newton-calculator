@@ -2,6 +2,8 @@ import { useState } from 'react'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import ToggleButton from 'react-bootstrap/ToggleButton'
 import { texts } from './params/params'
+import GMaxForm from './Componants/GMaxForm'
+import MinNewtonForG from './Componants/MinNewtonForG'
 
 
 function App() {
@@ -43,6 +45,10 @@ function App() {
         <div className='container-fluid py-5'>
           <p className='fs-3'>{describ}</p>
         </div>
+      </div>
+      <div className='d-flex justify-content-between w-75'>
+        <GMaxForm />
+        <MinNewtonForG />
       </div>
     </div> 
   )
