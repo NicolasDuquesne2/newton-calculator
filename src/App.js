@@ -1,16 +1,18 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef } from 'react'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import ToggleButton from 'react-bootstrap/ToggleButton'
 import Button from 'react-bootstrap/Button'
 import Form  from 'react-bootstrap/Form'
 import { texts } from './params/params'
+import useMaxG from './Hooks/useMaxG'
 
 function App() {
 
   const [radioValue, setRadioValue] = useState('1');
-  const [formDatas, setFormDatas] = useState({})
+  const [maxG, setDatas] = useMaxG({})
   const massInput = useRef(null)
   const newtonInput = useRef(null)
+  const maxGDisplay = useRef(null)
 
   let title = ""
   let describ = ""
@@ -28,11 +30,15 @@ function App() {
     const newtonNumeric = Number(newtonInput.current.value)
 
     if( !isNaN(massNumeric) && !isNaN(newtonNumeric)) {
-      setFormDatas({mass:massNumeric, newton:newtonNumeric})
+      setDatas({mass:massNumeric, newton:newtonNumeric})
     }
   }
 
-  console.log(formDatas)
+  function onEraseForm() {
+    massInput.current.value = ''
+    newtonInput.current.value = ''
+    maxGDisplay.current.outerHTML = ''
+  }
 
   return (
     <div className="App container-fluid d-flex flex-column align-items-center">
@@ -61,20 +67,24 @@ function App() {
         </div>
       </div>
       <Form>
-      <Form.Group className="mb-3" controlId="massInput">
-        <Form.Label>Masse du vaisseau</Form.Label>
-        <Form.Control type="number" ref={massInput}/>
-      </Form.Group>
+        <Form.Group className="mb-3" controlId="massInput">
+          <Form.Label>Masse du vaisseau</Form.Label>
+          <Form.Control type="number" ref={massInput} required={true}/>
+        </Form.Group>
 
-      <Form.Group className="mb-3" controlId="newtonInput">
-        <Form.Label>Newtons</Form.Label>
-        <Form.Control type="number" ref={newtonInput}/>
-      </Form.Group>
-      
-      <Button variant="primary" type="button" onClick={() => onFormVal()}>
-        Submit
-      </Button>
-    </Form>
+        <Form.Group className="mb-3" controlId="newtonInput">
+          <Form.Label>Newtons</Form.Label>
+          <Form.Control type="number" ref={newtonInput} required={true}/>
+        </Form.Group>
+        
+        <Button variant="primary" type="button" onClick={() => onFormVal()}>
+          Calculer le maximum de G
+        </Button>
+        <Button variant="danger" type="button" onClick={() => onEraseForm()}>
+          Effacer
+        </Button>
+      </Form>
+      {isNaN(maxG)? "": <p ref={maxGDisplay}>{maxG}</p>}
     </div>
     
   );
