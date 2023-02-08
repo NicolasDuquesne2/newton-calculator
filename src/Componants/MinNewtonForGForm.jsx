@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button'
 import Form  from 'react-bootstrap/Form'
 import useMinNewton from '../Hooks/useMinNewton'
 
-function MinNewtonForG(){
+function MinNewtonForGForm(){
 
     const massInput = useRef(null)
     const gInput = useRef(null)
@@ -66,4 +66,4 @@ function MinNewtonForG(){
     )
 }
 
-export default MinNewtonForG
+export default MinNewtonForGForm

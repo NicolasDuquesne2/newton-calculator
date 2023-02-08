@@ -3,7 +3,7 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import ToggleButton from 'react-bootstrap/ToggleButton'
 import { texts } from './params/params'
 import GMaxForm from './Componants/GMaxForm'
-import MinNewtonForG from './Componants/MinNewtonForG'
+import MinNewtonForGForm from './Componants/MinNewtonForGForm'
 
 
 function App() {
@@ -48,7 +48,7 @@ function App() {
       </div>
       <div className='d-flex justify-content-between w-75'>
         <GMaxForm />
-        <MinNewtonForG />
+        <MinNewtonForGForm />
       </div>
     </div> 
   )
