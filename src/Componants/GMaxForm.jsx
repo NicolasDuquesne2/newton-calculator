@@ -25,22 +25,20 @@ function GMaxForm(){
     function onEraseForm() {
     massInput.current.value = ''
     newtonInput.current.value = ''
-    maxGDisplay.current.outerHTML = ''
+    maxGDisplay.current.innerHTML = ''
     cargoInput.current.value = ''
     }
 
-    console.log(maxG)
-
     return(
-        <div className='w-25'>
+        <div className='w-50 p-5 d-flex flex-column align-items-center'>
             <h3 className='text-wrap'>Calculez le nombre de G maximum supporté par votre vaisseau</h3>
-            <pre className='text-wrap'>
+            <p className='text-wrap'>
                 Entrez la masse de votre vaisseau, exprimée est Kt ou en tonnes dans le jeu.
                 1 tonne = 1 000 Kg, un 1Kt = 1 000 000. 
                 Pour un vaisseau de 15Kt, veuillez entrer 15000000 dans le champ Masse du vaisseau
                 Pour 1 MN - Mega Newton veuillez entrer 1000000 dans le champ Newtons
-            </pre>
-             <Form>
+            </p>
+             <Form className='w-75 bg-light p-5 border border-secondary'>
                 <Form.Group className="mb-3" controlId="massInput">
                 <Form.Label>Masse du vaisseau</Form.Label>
                 <Form.Control type="number" ref={massInput} required={true}/>
@@ -63,7 +61,7 @@ function GMaxForm(){
                 Effacer
                 </Button>
             </Form>
-            {isNaN(maxG)? "": <p ref={maxGDisplay}>{maxG}</p>}
+            <p ref={maxGDisplay}>{isNaN(maxG)? "": maxG}</p>
         </div>       
     )
 }

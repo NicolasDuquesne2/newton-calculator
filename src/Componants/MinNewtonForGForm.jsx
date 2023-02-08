@@ -30,15 +30,15 @@ function MinNewtonForGForm(){
     }
 
     return(
-        <div className='w-25'>
+        <div className='w-50 p-5 d-flex flex-column align-items-center'>
             <h3 className='text-wrap'>Calculez le nombre de Newton nécessaire pour la masse de votre vaisseau et du nombre de G visé</h3>
-            <pre className='text-wrap'>
+            <p className='text-wrap'>
                 Entrez la masse de votre vaisseau, exprimée est Kt ou en tonnes dans le jeu.
                 1 tonne = 1 000 Kg, un 1Kt = 1 000 000. 
                 Pour un vaisseau de 15Kt, veuillez entrer 15000000 dans le champ Masse du vaisseau
                 Veuillez entrer le nombre de G visés, dans le champ du nombre de G
-            </pre>
-             <Form>
+            </p>
+             <Form className='w-75 bg-light p-5 border border-secondary'>
                 <Form.Group className="mb-3" controlId="massInput">
                 <Form.Label>Masse du vaisseau</Form.Label>
                 <Form.Control type="number" ref={massInput} required={true}/>
