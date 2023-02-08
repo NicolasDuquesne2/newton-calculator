@@ -2,6 +2,8 @@ import { useRef } from 'react'
 import useMaxG from '../Hooks/useMaxG'
 import Button from 'react-bootstrap/Button'
 import Form  from 'react-bootstrap/Form'
+import { useSelector } from "react-redux/es/exports"
+import { texts } from '../params/params'
 
 function GMaxForm(){
 
@@ -10,6 +12,23 @@ function GMaxForm(){
     const newtonInput = useRef(null)
     const maxGDisplay = useRef(null)
     const cargoInput = useRef(null)
+    const radioValue = useSelector(state => state.language.value)
+    let formtitle = ''
+    let describ = ''
+    let massFieldLabel = ''
+    let cargoLabel = ''
+    let newtonsLabel = ''
+    let calculateButtonLabel = ''
+    let eraseButtonLabel = ''
+
+    radioValue === '1'? formtitle = texts.gmaxform.french.title: formtitle = texts.gmaxform.english.title
+    radioValue === '1'? describ = texts.gmaxform.french.description: describ = texts.gmaxform.english.description
+    radioValue === '1'? massFieldLabel = texts.gmaxform.french.massfield: massFieldLabel = texts.gmaxform.english.massfield
+    radioValue === '1'? cargoLabel = texts.gmaxform.french.cargo: cargoLabel = texts.gmaxform.english.cargo
+    radioValue === '1'? newtonsLabel = texts.gmaxform.french.newtons: newtonsLabel = texts.gmaxform.english.newtons
+    radioValue === '1'? calculateButtonLabel = texts.gmaxform.french.calculatebutton: calculateButtonLabel = texts.gmaxform.english.calculatebutton
+    radioValue === '1'? eraseButtonLabel = texts.gmaxform.french.erasebutton: eraseButtonLabel = texts.gmaxform.english.erasebutton
+
 
     function onFormVal() {
         const massNumeric = Number(massInput.current.value)
@@ -31,34 +50,29 @@ function GMaxForm(){
 
     return(
         <div className='w-50 p-5 d-flex flex-column align-items-center'>
-            <h3 className='text-wrap'>Calculez le nombre de G maximum supporté par votre vaisseau</h3>
-            <p className='text-wrap'>
-                Entrez la masse de votre vaisseau, exprimée est Kt ou en tonnes dans le jeu.
-                1 tonne = 1 000 Kg, un 1Kt = 1 000 000. 
-                Pour un vaisseau de 15Kt, veuillez entrer 15000000 dans le champ Masse du vaisseau
-                Pour 1 MN - Mega Newton veuillez entrer 1000000 dans le champ Newtons
-            </p>
+            <h3 className='text-wrap'>{formtitle}</h3>
+            <p className='text-wrap'>{describ}</p>
              <Form className='w-75 bg-light p-5 border border-secondary'>
                 <Form.Group className="mb-3" controlId="massInput">
-                <Form.Label>Masse du vaisseau</Form.Label>
+                <Form.Label>{massFieldLabel}</Form.Label>
                 <Form.Control type="number" ref={massInput} required={true}/>
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="newtonInput">
-                <Form.Label>Tonnage de marchandise</Form.Label>
+                <Form.Label>{cargoLabel}</Form.Label>
                 <Form.Control type="number" ref={cargoInput} required={true}/>
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="newtonInput">
-                <Form.Label>Newtons</Form.Label>
+                <Form.Label>{newtonsLabel}</Form.Label>
                 <Form.Control type="number" ref={newtonInput} required={true}/>
                 </Form.Group>
                 
                 <Button variant="primary" type="button" onClick={() => onFormVal()}>
-                Calculer
+                    {calculateButtonLabel}
                 </Button>
                 <Button variant="danger" type="button" onClick={() => onEraseForm()}>
-                Effacer
+                    {eraseButtonLabel}
                 </Button>
             </Form>
             <p ref={maxGDisplay}>{isNaN(maxG)? "": maxG}</p>
