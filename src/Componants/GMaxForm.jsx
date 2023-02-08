@@ -54,7 +54,7 @@ function GMaxForm(){
             <p className='text-wrap'>{describ}</p>
              <Form className='w-75 bg-light p-5 border border-secondary'>
                 <Form.Group className="mb-3" controlId="massInput">
-                <Form.Label>{massFieldLabel}</Form.Label>
+                <Form.Label>{massFieldLabel}<span class="badge bg-danger rounded-circle ms-3">1</span></Form.Label>
                 <Form.Control type="number" ref={massInput} required={true}/>
                 </Form.Group>
 
@@ -64,7 +64,7 @@ function GMaxForm(){
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="newtonInput">
-                <Form.Label>{newtonsLabel}</Form.Label>
+                <Form.Label>{newtonsLabel}<span class="badge bg-danger rounded-circle ms-3">2</span></Form.Label>
                 <Form.Control type="number" ref={newtonInput} required={true}/>
                 </Form.Group>
                 
