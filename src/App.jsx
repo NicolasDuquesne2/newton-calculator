@@ -16,6 +16,9 @@ function App() {
   
   let title = ""
   let describ = ""
+  let topImageDescrib = ""
+  let massBadgeLabel = ""
+  let newtonBadgeLabel = ""
 
   const radioButtons = [
     { name: 'Français', value: '1' },
@@ -23,6 +26,10 @@ function App() {
 
   radioValue === '1'? title = texts.home.french.title: title = texts.home.english.title
   radioValue === '1'? describ = texts.home.french.description: describ = texts.home.english.description
+  radioValue === '1'? topImageDescrib = texts.image.french.top: topImageDescrib = texts.image.english.top
+  radioValue === '1'? massBadgeLabel = texts.image.french.badge1: massBadgeLabel = texts.image.english.badge1
+  radioValue === '1'? newtonBadgeLabel = texts.image.french.badge2: newtonBadgeLabel = texts.image.english.badge2
+  
 
   return (
     <div className="App container-fluid d-flex flex-column align-items-center">
@@ -51,10 +58,10 @@ function App() {
         </div>
       </div>
       <div className='p-5 mb-4 bg-light w-75'>
-        <p className="fs-4">L'image ci-dessous indique l'emplacment des données à intégrer dans les formulaires, aux numéros correspondants</p>
+        <p className="fs-4">{topImageDescrib}</p>
         <Image src={images.panelStats} className='object-fit-fill w-100'></Image>
-        <p><span class="badge bg-danger rounded-circle ">1</span> Masse du vaisseau</p>
-        <p><span class="badge bg-danger rounded-circle ">2</span> Force en Mega newtons</p>
+        <p><span class="badge bg-danger rounded-circle ">1</span> {massBadgeLabel}</p>
+        <p><span class="badge bg-danger rounded-circle ">2</span> {newtonBadgeLabel}</p>
       </div>
       <div className='d-flex justify-content-between w-75'>
         <GMaxForm />

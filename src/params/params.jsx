@@ -16,6 +16,20 @@ export const texts = {
         }
     },
 
+    image: {
+        french: {
+            top: "L'image ci-dessous indique l'emplacment des données à intégrer dans les formulaires, aux numéros correspondants",
+            badge1: "Masse du vaisseau",
+            badge2: "Newtons"
+        },
+
+        english: {
+            top: "The image below shows the location of the data to be included in the forms, at the corresponding numbers",
+            badge1: "Ship weight",
+            badge2: "Newtons"
+        }
+    },
+
     gmaxform: {
         french: {
             title: `Calculez le nombre de G maximum supporté par votre vaisseau`,
