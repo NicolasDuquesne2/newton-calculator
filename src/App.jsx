@@ -1,10 +1,12 @@
+import { useDispatch, useSelector } from "react-redux/es/exports"
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import ToggleButton from 'react-bootstrap/ToggleButton'
+import Image from 'react-bootstrap/Image'
 import { texts } from './params/params'
 import GMaxForm from './Componants/GMaxForm'
 import MinNewtonForGForm from './Componants/MinNewtonForGForm'
-import { useDispatch, useSelector } from "react-redux/es/exports"
 import { update } from "./Redux/Language/languageSlice.jsx"
+import { images } from "./params/images"
 
 
 function App() {
@@ -24,7 +26,7 @@ function App() {
 
   return (
     <div className="App container-fluid d-flex flex-column align-items-center">
-      <header className="p-5 mb-3 bg-primary bg-gradient border position-relative rounded-3 w-100">
+      <header className="p-5 mb-3 bg-primary bg-gradient border position-relative rounded-3 w-100 sticky-top">
         <ButtonGroup className='position-absolute top-0 start-0 m-2' aria-label="Language select">
         {radioButtons.map((radio, idx) => (
           <ToggleButton
@@ -47,6 +49,12 @@ function App() {
         <div className='container-fluid py-5'>
           <p className='fs-3'>{describ}</p>
         </div>
+      </div>
+      <div className='p-5 mb-4 bg-light w-75'>
+        <p className="fs-4">L'image ci-dessous indique l'emplacment des données à intégrer dans les formulaires, aux numéros correspondants</p>
+        <Image src={images.panelStats} className='object-fit-fill w-100'></Image>
+        <p><span class="badge bg-danger rounded-circle ">1</span> Masse du vaisseau</p>
+        <p><span class="badge bg-danger rounded-circle ">2</span> Force en Mega newtons</p>
       </div>
       <div className='d-flex justify-content-between w-75'>
         <GMaxForm />
