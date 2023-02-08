@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import Button from 'react-bootstrap/Button'
 import Form  from 'react-bootstrap/Form'
+import Table from 'react-bootstrap/Table';
 import useMinNewton from '../Hooks/useMinNewton'
 import { useSelector } from "react-redux/es/exports"
 import { texts } from '../params/params'
@@ -10,7 +11,8 @@ function MinNewtonForGForm(){
     const massInput = useRef(null)
     const gInput = useRef(null)
     const cargoInput = useRef(null)
-    const maxGDisplay = useRef(null)
+    const minNDisplay = useRef(null)
+    const accDisplay = useRef(null)
     const [nMin, setDatas] = useMinNewton({})
     const radioValue = useSelector(state => state.language.value)
     let formtitle = ''
@@ -20,14 +22,31 @@ function MinNewtonForGForm(){
     let gLabel = ''
     let calculateButtonLabel = ''
     let eraseButtonLabel = ''
+    let nMinLabel = ''
+    let accLabel = ''
 
-    radioValue === '1'? formtitle = texts.nminform.french.title: formtitle = texts.nminform.english.title
-    radioValue === '1'? describ = texts.nminform.french.description: describ = texts.nminform.english.description
-    radioValue === '1'? massFieldLabel = texts.nminform.french.massfield: massFieldLabel = texts.nminform.english.massfield
-    radioValue === '1'? cargoLabel = texts.nminform.french.cargo: cargoLabel = texts.nminform.english.cargo
-    radioValue === '1'? gLabel = texts.nminform.french.g: gLabel = texts.nminform.english.g
-    radioValue === '1'? calculateButtonLabel = texts.nminform.french.calculatebutton: calculateButtonLabel = texts.nminform.english.calculatebutton
-    radioValue === '1'? eraseButtonLabel = texts.nminform.french.erasebutton: eraseButtonLabel = texts.nminform.english.erasebutton
+    if ( radioValue === '1') {
+        formtitle = texts.nminform.french.title
+        describ = texts.nminform.french.description
+        massFieldLabel = texts.nminform.french.massfield
+        cargoLabel = texts.nminform.french.cargo
+        gLabel = texts.nminform.french.g
+        calculateButtonLabel = texts.nminform.french.calculatebutton
+        eraseButtonLabel = texts.nminform.french.erasebutton
+        nMinLabel = texts.nminTab.french.min
+        accLabel = texts.nminTab.french.acc
+    } else {
+        formtitle = texts.nminform.english.title
+        describ = texts.nminform.english.description
+        massFieldLabel = texts.nminform.english.massfield
+        cargoLabel = texts.nminform.english.cargo
+        gLabel = texts.nminform.english.g
+        calculateButtonLabel = texts.nminform.english.calculatebutton
+        eraseButtonLabel = texts.nminform.english.erasebutton
+        nMinLabel = texts.nminTab.english.min
+        accLabel = texts.nminTab.english.acc
+    }
+
 
     function onFormVal() {
         const massNumeric = Number(massInput.current.value)
@@ -44,16 +63,19 @@ function MinNewtonForGForm(){
     massInput.current.value = ''
     gInput.current.value = ''
     cargoInput.current.value = ''
-    maxGDisplay.current.outerHTML = ''
+    minNDisplay.current.innerHTML = ''
+    accDisplay.current.innerHTML = ''
     }
+
+    //{Object.keys(nMin).length === 0? "": nMin.minn}
 
     return(
         <div className='w-50 p-5 d-flex flex-column align-items-center'>
             <h3 className='text-wrap'>{formtitle}</h3>
             <p className='text-wrap'>{describ}</p>
-             <Form className='w-75 bg-light p-5 border border-secondary'>
+             <Form className='w-75 bg-light p-5 border border-secondary mb-3'>
                 <Form.Group className="mb-3" controlId="massInput">
-                <Form.Label>{massFieldLabel}<span class="badge bg-danger rounded-circle ms-3">1</span></Form.Label>
+                <Form.Label>{massFieldLabel}<span className="badge bg-danger rounded-circle ms-3">1</span></Form.Label>
                 <Form.Control type="number" ref={massInput} required={true}/>
                 </Form.Group>
 
@@ -74,7 +96,20 @@ function MinNewtonForGForm(){
                 {eraseButtonLabel}
                 </Button>
             </Form>
-            {isNaN(nMin)? "": <p ref={maxGDisplay}>{nMin}</p>}
+            <Table striped bordered hover className='w-75'>
+                <thead>
+                    <tr>
+                        <th>{nMinLabel}</th>
+                        <th>{accLabel}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td ref={minNDisplay}>{Object.keys(nMin).length === 0? "": nMin.minn}</td>
+                        <td ref={accDisplay}>{Object.keys(nMin).length === 0? "": nMin.acc}</td>
+                    </tr>
+                </tbody>
+            </Table>
         </div>       
     )
 }

@@ -60,8 +60,8 @@ function App() {
       <div className='p-5 mb-4 bg-light w-75'>
         <p className="fs-4">{topImageDescrib}</p>
         <Image src={images.panelStats} className='object-fit-fill w-100'></Image>
-        <p><span class="badge bg-danger rounded-circle ">1</span> {massBadgeLabel}</p>
-        <p><span class="badge bg-danger rounded-circle ">2</span> {newtonBadgeLabel}</p>
+        <p><span className="badge bg-danger rounded-circle ">1</span> {massBadgeLabel}</p>
+        <p><span className="badge bg-danger rounded-circle ">2</span> {newtonBadgeLabel}</p>
       </div>
       <div className='d-flex justify-content-between w-75'>
         <GMaxForm />

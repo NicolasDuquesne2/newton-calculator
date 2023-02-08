@@ -44,7 +44,7 @@ export const texts = {
         },
 
         english: {
-            title:`Calculate the maximum number of Gs your ship can support`,
+            title:`Calculate the maximum number of G your ship can support`,
             description: `Enter the mass of your ship, expressed in Kt or tonnes in the game. 
             1 ton = 1,000 Kg, a 1Kt = 1,000,000 kg. For a 15Kt ship, please enter 15000000 
             in the Ship Mass field For 1 MN - Mega Newton please enter 1000000 in the Newtons field`,
@@ -79,6 +79,30 @@ export const texts = {
             g: `Number of G`,
             calculatebutton: `Calculate`,
             erasebutton: `Erase`
+        }
+    },
+
+    gmaxTab: {
+        french: {
+            max: 'G maximum',
+            acc: 'Acceleration en m/s²'
+        },
+
+        english: {
+            max: 'Maximum G',
+            acc: 'Acceleration in m/s²'
+        }
+    },
+
+    nminTab: {
+        french: {
+            min: 'Newtons minimum',
+            acc: 'Acceleration en m/s²'
+        },
+
+        english: {
+            min: 'Minimum newtons',
+            acc: 'Acceleration in m/s²'
         }
     }
 }
