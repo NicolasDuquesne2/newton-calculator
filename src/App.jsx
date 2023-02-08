@@ -1,14 +1,16 @@
-import { useState } from 'react'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import ToggleButton from 'react-bootstrap/ToggleButton'
 import { texts } from './params/params'
 import GMaxForm from './Componants/GMaxForm'
 import MinNewtonForGForm from './Componants/MinNewtonForGForm'
+import { useDispatch, useSelector } from "react-redux/es/exports"
+import { update } from "./Redux/Language/languageSlice.jsx"
 
 
 function App() {
 
-  const [radioValue, setRadioValue] = useState('1');
+  const dispatch = useDispatch()
+  const radioValue = useSelector(state => state.language.value)
   
   let title = ""
   let describ = ""
@@ -33,7 +35,7 @@ function App() {
             name="radio"
             value={radio.value}
             checked={radioValue === radio.value}
-            onChange={(e) => setRadioValue(e.currentTarget.value)}
+            onChange={(e) => dispatch(update(e.currentTarget.value))}
           >
             {radio.name}
           </ToggleButton>
