@@ -32,25 +32,31 @@ export const texts = {
 
     gmaxform: {
         french: {
-            title: `Calculez le nombre de G maximum supporté par votre vaisseau`,
-            description: `Entrez la masse de votre vaisseau, exprimée est Kt ou en tonnes dans le jeu. 
-            1 tonne = 1 000 Kg, un 1Kt = 1 000 000. Pour un vaisseau de 15Kt, veuillez entrer 15000000 
-            dans le champ Masse du vaisseau Pour 1 MN - Mega Newton veuillez entrer 1000000 dans le champ Newtons`,
+            title: `G maximum`,
+            description: `Entrez la masse du vaisseau en Kilo-tonne, la masse du cargo(contraintes poids/volume)
+            et la poussée de vos propulseurs en dessous de votre vaisseau, en kilo newtons`,
             massfield: `Masse du vaisseau`,
             cargo: `Masse de la marchandise`,
+            massplaceholder: "Masse en tonnes",
             newtons: `Newtons`,
+            newtonplaceholder: "Newtons en Kilo-newtons",
+            massTooltip : "Pour 1 Kt, entrez 1 000",
+            newtonTooltip: "Pour 1 MN, entrez 1 000",
             calculatebutton: `Calculer`,
             erasebutton: `Effacer`
         },
 
         english: {
-            title:`Calculate the maximum number of G your ship can support`,
-            description: `Enter the mass of your ship, expressed in Kt or tonnes in the game. 
-            1 ton = 1,000 Kg, a 1Kt = 1,000,000 kg. For a 15Kt ship, please enter 15000000 
-            in the Ship Mass field For 1 MN - Mega Newton please enter 1000000 in the Newtons field`,
+            title:`Max G`,
+            description: `Enter the mass of the ship in kilotons, the mass of the cargo (weight/volume constraints)
+            and the thrust of your thrusters below your ship, in kilo newtons`,
             massfield: `Ship weight`,
             cargo: `Cargo weight`,
+            massplaceholder: "Weight in tonnes",
             newtons: `Newtons`,
+            newtonplaceholder: "Newtons in kilonewtons",
+            massTooltip : "For 1 Kt, put 1 000",
+            newtonTooltip: "For 1 MN, put 1 000",
             calculatebutton: `Calculate`,
             erasebutton: `Erase`
         }
@@ -58,27 +64,29 @@ export const texts = {
 
     nminform: {
         french: {
-            title: `Calculez le nombre de Newton nécessaire pour la masse de votre vaisseau et du nombre de G visé`,
-            description: `Entrez la masse de votre vaisseau, exprimée est Kt ou en tonnes dans le jeu. 1 tonne = 1 000 Kg,
-            un 1Kt = 1 000 000. Pour un vaisseau de 15Kt, veuillez entrer 15000000 dans le champ Masse du vaisseau. 
-            Veuillez entrer le nombre de G visés, dans le champ du nombre de G`,
+            title: `Newtons minimum avec masse et G`,
+            description: `Entrez la masse du vaisseau en Kilo-tonne, la masse du cargo(contraintes poids/volume)
+             et le nombre de G visé`,
             massfield: `Masse du vaisseau`,
             cargo: `Masse de la marchandise`,
+            massplaceholder: "Masse en tonnes",
             g: `Nombre de G`,
             calculatebutton: `Calculer`,
-            erasebutton: `Effacer`
+            erasebutton: `Effacer`,
+            massTooltip : "Pour 1 Kt, entrez 1 000"
         },
 
         english: {
-            title:`Calculate the number of Newtons needed for the mass of your ship and the number of Gs you are aiming for`,
-            description: `Enter the mass of your ship, expressed in Kt or tons in the game. 1 ton = 1,000 Kg,
-            one 1Kt = 1,000,000. For a 15Kt ship, please enter 15000000 in the Ship Mass field. 
-            Please enter the number of G's you are aiming for, in the G number field`,
+            title:`Minimum newtons with weight and G`,
+            description: `Enter the mass of the ship in kilotons, the mass of the cargo (weight/volume constraints)
+            and the number of G targeted`,
             massfield: `Ship weight`,
             cargo: `Cargo weight`,
+            massplaceholder: "Weight in tonnes",
             g: `Number of G`,
             calculatebutton: `Calculate`,
-            erasebutton: `Erase`
+            erasebutton: `Erase`,
+            massTooltip : "For 1 Kt, put 1 000"
         }
     },
 

@@ -1,9 +1,11 @@
 import { useRef } from 'react'
+import { useSelector } from "react-redux/es/exports"
 import Button from 'react-bootstrap/Button'
 import Form  from 'react-bootstrap/Form'
 import Table from 'react-bootstrap/Table';
 import useMinNewton from '../Hooks/useMinNewton'
-import { useSelector } from "react-redux/es/exports"
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 import { texts } from '../params/params'
 
 function MinNewtonForGForm(){
@@ -24,6 +26,8 @@ function MinNewtonForGForm(){
     let eraseButtonLabel = ''
     let nMinLabel = ''
     let accLabel = ''
+    let weightPlaceholder = ''
+    let massTooltip = ''
 
     if ( radioValue === '1') {
         formtitle = texts.nminform.french.title
@@ -31,6 +35,8 @@ function MinNewtonForGForm(){
         massFieldLabel = texts.nminform.french.massfield
         cargoLabel = texts.nminform.french.cargo
         gLabel = texts.nminform.french.g
+        massTooltip = texts.nminform.french.massTooltip
+        weightPlaceholder = texts.gmaxform.french.massplaceholder
         calculateButtonLabel = texts.nminform.french.calculatebutton
         eraseButtonLabel = texts.nminform.french.erasebutton
         nMinLabel = texts.nminTab.french.min
@@ -41,17 +47,28 @@ function MinNewtonForGForm(){
         massFieldLabel = texts.nminform.english.massfield
         cargoLabel = texts.nminform.english.cargo
         gLabel = texts.nminform.english.g
+        massTooltip = texts.nminform.english.massTooltip
+        weightPlaceholder = texts.gmaxform.english.massplaceholder
         calculateButtonLabel = texts.nminform.english.calculatebutton
         eraseButtonLabel = texts.nminform.english.erasebutton
         nMinLabel = texts.nminTab.english.min
         accLabel = texts.nminTab.english.acc
     }
 
+    function castInNumber(stringArray) {
+        return stringArray.map((stringVar) => {
+            const cleaned = ("" + stringVar).replace(/\D/g, "")
+            return Number(cleaned)
+        })
+    }
+
 
     function onFormVal() {
-        const massNumeric = Number(massInput.current.value)
-        const gNumeric = Number(gInput.current.value)
-        const cargoNumeric = Number(cargoInput.current.value)
+
+        const castedInNumber = castInNumber([massInput.current.value, gInput.current.value, cargoInput.current.value])
+        const massNumeric = castedInNumber[0]*1000
+        const gNumeric = castedInNumber[1]
+        const cargoNumeric = castedInNumber[2]*1000
     
         if( !isNaN(massNumeric) && !isNaN(gNumeric) && !isNaN(cargoNumeric)) {
             const totalWeight =  massNumeric + cargoNumeric
@@ -67,7 +84,17 @@ function MinNewtonForGForm(){
     accDisplay.current.innerHTML = ''
     }
 
-    //{Object.keys(nMin).length === 0? "": nMin.minn}
+    function format(text) {
+        const thousandsPatt = /\d{1,3}(?=(\d{3})+(?!\d))/g
+        return String(text.replace(thousandsPatt, '$& '))
+    }
+
+    function onDigitChange(e) {
+
+        let fieldVal = e.target.value
+        const cleaned = ("" + fieldVal).replace(/\D/g, "")
+        e.target.value = format(cleaned)
+    }
 
     return(
         <div className='w-50 p-5 d-flex flex-column align-items-center'>
@@ -76,25 +103,46 @@ function MinNewtonForGForm(){
              <Form className='w-75 bg-light p-5 border border-secondary mb-3'>
                 <Form.Group className="mb-3" controlId="massInput">
                 <Form.Label>{massFieldLabel}<span className="badge bg-danger rounded-circle ms-3">1</span></Form.Label>
-                <Form.Control type="number" ref={massInput} required={true}/>
+                <OverlayTrigger placement='right' overlay={
+                    <Tooltip >
+                        {massTooltip}
+                    </Tooltip>
+                }>
+                    <Form.Control type="text" ref={massInput} 
+                              required={true} 
+                              onInput={(e) => (onDigitChange(e))}
+                              placeholder={weightPlaceholder}/>
+                </OverlayTrigger>
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="newtonInput">
                 <Form.Label>{cargoLabel}</Form.Label>
-                <Form.Control type="number" ref={cargoInput} required={true}/>
+                <OverlayTrigger placement='right' overlay={
+                    <Tooltip >
+                        {massTooltip}
+                    </Tooltip>
+                }>
+                    <Form.Control type="text" 
+                              ref={cargoInput} 
+                              required={true} 
+                              onInput={(e) => (onDigitChange(e))}
+                              placeholder={weightPlaceholder}/>
+                </OverlayTrigger>
+                
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="newtonInput">
                 <Form.Label>{gLabel}</Form.Label>
-                <Form.Control type="number" ref={gInput} required={true}/>
+                <Form.Control type="text" ref={gInput} required={true} onInput={(e) => (onDigitChange(e))}/>
                 </Form.Group>
-            
-                <Button variant="primary" type="button" onClick={() => onFormVal()}>
-                {calculateButtonLabel}
-                </Button>
-                <Button variant="danger" type="button" onClick={() => onEraseForm()}>
-                {eraseButtonLabel}
-                </Button>
+                <div className='d-flex justify-content-between'>
+                    <Button variant="dark" type="button" onClick={() => onFormVal()}>
+                        {calculateButtonLabel}
+                    </Button>
+                    <Button variant="secondary" type="button" onClick={() => onEraseForm()}>
+                        {eraseButtonLabel}
+                    </Button>
+                </div>
             </Form>
             <Table striped bordered hover className='w-75'>
                 <thead>
