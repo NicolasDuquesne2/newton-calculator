@@ -19,6 +19,8 @@ function App() {
   let topImageDescrib = ""
   let massBadgeLabel = ""
   let newtonBadgeLabel = ""
+  let footerMentions = ''
+  const thisYear = new Date().getUTCFullYear()
 
   const radioButtons = [
     { name: 'Français', value: '1' },
@@ -26,6 +28,7 @@ function App() {
 
   radioValue === '1'? title = texts.home.french.title: title = texts.home.english.title
   radioValue === '1'? describ = texts.home.french.description: describ = texts.home.english.description
+  radioValue === '1'? footerMentions = texts.home.french.footertext: footerMentions = texts.home.english.footertext
   radioValue === '1'? topImageDescrib = texts.image.french.top: topImageDescrib = texts.image.english.top
   radioValue === '1'? massBadgeLabel = texts.image.french.badge1: massBadgeLabel = texts.image.english.badge1
   radioValue === '1'? newtonBadgeLabel = texts.image.french.badge2: newtonBadgeLabel = texts.image.english.badge2
@@ -33,7 +36,7 @@ function App() {
 
   return (
     <div className="App container-fluid d-flex flex-column align-items-center">
-      <header className="p-5 mb-3 bg-primary bg-gradient border position-relative rounded-3 w-100 sticky-top">
+      <header className="p-5 mb-3 bg-primary bg-gradient position-relative w-100 sticky-top">
         <ButtonGroup className='position-absolute top-0 start-0 m-2' aria-label="Language select">
         {radioButtons.map((radio, idx) => (
           <ToggleButton
@@ -67,6 +70,9 @@ function App() {
         <GMaxForm />
         <MinNewtonForGForm />
       </div>
+      <footer className="p-5 bg-primary bg-gradient w-100 d-flex flex-column align-items-center">
+          <p className="text-white fs-3 mb-0">{footerMentions} @{thisYear}</p>
+      </footer>
     </div> 
   )
 }
