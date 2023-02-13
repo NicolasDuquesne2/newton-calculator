@@ -98,8 +98,8 @@ function MinNewtonForGForm(){
 
     return(
         <div className='w-100 p-1 p-md-5 d-flex flex-column align-items-center'>
-            <h3 className='text-wrap fs-4'>{formtitle}</h3>
-            <p className='text-wrap'>{describ}</p>
+            <h3 className='text-wrap fs-xxl-3'>{formtitle}</h3>
+            <p className='text-wrap fs-xxl-4'>{describ}</p>
              <Form className='w-100 bg-light p-5 border border-secondary mb-3'>
                 <Form.Group className="mb-3" controlId="massInput">
                 <Form.Label>{massFieldLabel}<span className="badge bg-danger rounded-circle ms-3">1</span></Form.Label>
