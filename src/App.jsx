@@ -37,7 +37,7 @@ function App() {
   return (
     <div className="App container-fluid d-flex flex-column align-items-center">
       <header className="p-5 mb-3 bg-primary bg-gradient position-relative w-100 sticky-top">
-        <ButtonGroup className='position-absolute top-0 start-0 m-2' aria-label="Language select">
+        <ButtonGroup className='position-absolute top-0 start-0 m-1 btn-group-sm' aria-label="Language select">
         {radioButtons.map((radio, idx) => (
           <ToggleButton
             key={`toggle-${idx}`}
@@ -53,25 +53,25 @@ function App() {
           </ToggleButton>
         ))}
         </ButtonGroup>
-        <p className="text-white text-center fs-1">{title}</p>
+        <p className="text-white text-center fs-4 fs-lg-3">{title}</p>
       </header>
-      <div className='p-5 mb-4 bg-light rounded-3 w-75'>
+      <div className='p-0 mb-2 bg-light rounded-3 w-100'>
         <div className='container-fluid py-5'>
-          <p className='fs-3'>{describ}</p>
+          <p className='fs-6'>{describ}</p>
         </div>
       </div>
-      <div className='p-5 mb-4 bg-light w-75'>
-        <p className="fs-4">{topImageDescrib}</p>
+      <div className='mb-4 bg-light w-100'>
+        <p className="fs-6">{topImageDescrib}</p>
         <Image src={images.panelStats} className='object-fit-fill' fluid ></Image>
         <p><span className="badge bg-danger rounded-circle ">1</span> {massBadgeLabel}</p>
         <p><span className="badge bg-danger rounded-circle ">2</span> {newtonBadgeLabel}</p>
       </div>
-      <div className='d-flex justify-content-between w-75'>
+      <div className='d-flex flex-column flex-lg-row'>
         <GMaxForm />
         <MinNewtonForGForm />
       </div>
-      <footer className="p-5 bg-primary bg-gradient w-100 d-flex flex-column align-items-center">
-          <p className="text-white fs-3 mb-0">{footerMentions} @{thisYear}</p>
+      <footer className="p-4 bg-primary bg-gradient w-100 d-flex flex-column align-items-center">
+          <p className="text-white fs-6 mb-0">{footerMentions} @{thisYear}</p>
       </footer>
     </div> 
   )
