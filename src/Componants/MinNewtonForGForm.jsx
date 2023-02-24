@@ -153,7 +153,7 @@ function MinNewtonForGForm(){
                 </thead>
                 <tbody>
                     <tr>
-                        <td ref={minNDisplay}>{Object.keys(nMin).length === 0? "": nMin.minn}</td>
+                        <td ref={minNDisplay}>{Object.keys(nMin).length === 0? "": format(String(nMin.minn))}</td>
                         <td ref={accDisplay}>{Object.keys(nMin).length === 0? "": nMin.acc}</td>
                     </tr>
                 </tbody>
